@@ -1,0 +1,40 @@
+.discover-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100wv;
+}
+.discover-container .discover-box {
+  cursor: pointer;
+  border: none;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  font-weight: bold;
+  color: whitesmoke;
+  background-color: #043763;
+  padding: 4px;
+}
+.discover-container .discover-box:hover {
+  padding: 0px;
+  color: #043763;
+  background-color: whitesmoke;
+  border: solid 4px #043763;
+}
+.discover-container .discover-box .discover-button {
+  display: flex;
+  align-items: center;
+  width: 10em;
+  height: 10em;
+  padding: 1em;
+}
+.discover-container .discover-box .discover-button:hover {
+  color: #043763;
+  background-color: whitesmoke;
+}
+.disabled-btn:hover {
+  cursor: not-allowed;
+}

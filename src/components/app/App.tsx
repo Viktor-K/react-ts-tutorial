@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import SharkRandom from '../shark-random/SharkRandom';
+import SharkRandom from '../SharkRandom/SharkRandom';
 
 const logo = require('../../img/Discoversharks.png');
 

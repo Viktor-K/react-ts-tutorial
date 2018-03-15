@@ -1,27 +1,14 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 import './SharkDiscover.css';
+import { SharksProps, SharksState } from './SharkDiscoveryTypes';
 
 const axios = require('axios');
 const Glyphicon = require('react-bootstrap/lib/Glyphicon');
-const ENABLE_DEBUG = false;
 const DEFAULT_SHARK_IMG = 'https://cdn.onlinewebfonts.com/svg/img_74287.png';
 const PROXY_SERVERS = ['http://cors-anywhere.herokuapp.com', 'https://crossorigin.me'];
-
-function printLog(msg: string) {
-    if (ENABLE_DEBUG) {
-        console.log(`DEBUG : ${msg}`);
-    }
-}
-
-type SharksProps = {
-    sharkName: string | undefined
-};
-
-type SharksState = {
-    sharkName: string | undefined,
-    sharkImgUrl: string | undefined
-};
+const ATTENDIBLE_IMG_SITE = 'http://www.arkive.org';
+const ENABLE_DEBUG = false; // Enable logs for this components
 
 class SharksDiscover extends React.Component<SharksProps, SharksState> {
 
@@ -33,60 +20,50 @@ class SharksDiscover extends React.Component<SharksProps, SharksState> {
         };
     }
 
+    setComponentState( // Example of signature type usages
+        nextState: SharksState | ((state: SharksState, props: SharksProps | null) => SharksState | null),
+        callBack?: Function
+    ) {
+        this.setState(nextState, () => { if (typeof callBack === 'function') { callBack.bind(this)(); } });
+    }
+
     componentWillReceiveProps(nextProps: SharksProps, nextState: SharksState) {
         if (nextProps.sharkName !== this.props.sharkName) {
             printLog(`Props updated with props ${JSON.stringify(nextProps)}`);
-            this.setState(
+            this.setComponentState(
                 {
                     sharkName: nextProps.sharkName,
                     sharkImgUrl: undefined
                 },
                 this.fetchSharkImage
             );
-            this.render();
+            this.render(); // With this we can see loader 
         }
     }
 
     fetchSharkImage() {
         let self = this;
         const { sharkName } = self.state;
-        printLog(`Fetch Shark image perform search : ${JSON.stringify(this.state)}`);
 
         if (typeof sharkName === 'string') {
-            const targetUrl = `http://api.qwant.com/api/search/images?count=100&offset=1&q=${sharkName}%arkive.org`;
+            const targetUrl = `http://api.qwant.com/api/search/images?count=10&offset=1&q=${sharkName}%20arkive.org`;
             const requestUrl = `${PROXY_SERVERS[_.random(0, 1)]}/${targetUrl}`;
 
-            printLog(`perform search : ${requestUrl}`);
             axios.get(`${requestUrl}`)
                 .then(function (response: object) {
+                    let newSharkImg = DEFAULT_SHARK_IMG;
                     let results: object[] = _.get(response, 'data.data.result.items', []);
+
                     if (results.length > 0) {
-
-                        let found: object = _.find(results, (item => {
-                            return _.get(item, 'url') === 'http://www.arkive.org';
-                        }));
-
-                        if (found) {
-                            alert('Found by arkive.org');
-                            self.setState((prevState, props) => ({
-                                sharkImgUrl: _.get(found, 'media')
-                            }));
-                        } else {
-                            self.setState((prevState, props) => ({
-                                sharkImgUrl: _.get(results[0], 'media')
-                            }));
-                        }
-                    } else {
-                        self.setState((prevState, props) => ({
-                            sharkImgUrl: DEFAULT_SHARK_IMG
-                        }));
+                        let foundByAttendibleImgSite: object = _.find(results, item => _.get(item, 'url') === ATTENDIBLE_IMG_SITE);
+                        newSharkImg = (foundByAttendibleImgSite) ? _.get(foundByAttendibleImgSite, 'media') : _.get(results[0], 'media');
                     }
+
+                    self.setComponentState((prevState, props) => ({ sharkImgUrl: newSharkImg }));
                 })
                 .catch(function (error: object) {
-                    self.setState((prevState, props) => ({
-                        sharkImgUrl: DEFAULT_SHARK_IMG
-                    }));
                     printLog(`ERRORS occurred : ${error}`);
+                    self.setComponentState((prevState, props) => ({ sharkImgUrl: DEFAULT_SHARK_IMG }));
                 });
         }
     }
@@ -102,7 +79,8 @@ class SharksDiscover extends React.Component<SharksProps, SharksState> {
                                     <span style={{ marginLeft: '10px' }}>Image not available</span>
                                 </Glyphicon>
                                 <img style={{ boxShadow: 'none' }} src={sharkImgUrl} />
-                            </div>)
+                            </div>
+                        )
                         : <img src={sharkImgUrl} />}
                 </div>
             );
@@ -113,7 +91,6 @@ class SharksDiscover extends React.Component<SharksProps, SharksState> {
                 </div>
             );
         }
-
     }
 
     render() {
@@ -121,12 +98,12 @@ class SharksDiscover extends React.Component<SharksProps, SharksState> {
         let linkRef: string = `http://images.google.com/images?q=${sharkName}`;
 
         return (
-            <div className="shark-container">
+            <div className="discovered-shark-container">
                 <div className="discovered-box">
                     <div className="discovered-msg-container">
                         <div className="discovered-label"> You have discovered : </div>
                         <a target="_blank" href={linkRef} className="discovered-button">
-                            <span style={{ textDecoration: 'underline' }}>{sharkName}</span>
+                            <span style={{ fontSize: '3em', textDecoration: 'underline' }}> {sharkName} </span>
                             <i> click to search more photos</i>
                         </a>
                     </div>
@@ -134,6 +111,15 @@ class SharksDiscover extends React.Component<SharksProps, SharksState> {
                 </div>
             </div>
         );
+    }
+}
+
+/* =============================================
+/           UTILITY FUNCTIONS
+/ ============================================== */
+function printLog(msg: string) {
+    if (ENABLE_DEBUG) {
+        console.log(`DEBUG : ${msg}`);
     }
 }
 

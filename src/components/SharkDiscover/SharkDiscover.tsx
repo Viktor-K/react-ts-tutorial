@@ -8,13 +8,13 @@ const Glyphicon = require('react-bootstrap/lib/Glyphicon');
 const DEFAULT_SHARK_IMG = 'https://cdn.onlinewebfonts.com/svg/img_74287.png';
 const PROXY_SERVERS = ['http://cors-anywhere.herokuapp.com', 'https://crossorigin.me'];
 const ATTENDIBLE_IMG_SITE = 'http://www.arkive.org';
-const ENABLE_DEBUG = false; // Enable logs for this components
 
+// SharksDiscover is rapresentional component, is not connect to Redux Store,is written as pure react component
 class SharksDiscover extends React.Component<SharksProps, SharksState> {
 
     constructor(props: SharksProps) {
         super(props);
-        this.state = {
+        this.state = { // State inner component
             sharkName: props.sharkName,
             sharkImgUrl: undefined
         };
@@ -28,8 +28,7 @@ class SharksDiscover extends React.Component<SharksProps, SharksState> {
     }
 
     componentWillReceiveProps(nextProps: SharksProps, nextState: SharksState) {
-        if (nextProps.sharkName !== this.props.sharkName) {
-            printLog(`Props updated with props ${JSON.stringify(nextProps)}`);
+        if (nextProps.sharkName !== this.props.sharkName) {            
             this.setComponentState(
                 {
                     sharkName: nextProps.sharkName,
@@ -61,8 +60,7 @@ class SharksDiscover extends React.Component<SharksProps, SharksState> {
 
                     self.setComponentState((prevState, props) => ({ sharkImgUrl: newSharkImg }));
                 })
-                .catch(function (error: object) {
-                    printLog(`ERRORS occurred : ${error}`);
+                .catch(function (error: object) {                
                     self.setComponentState((prevState, props) => ({ sharkImgUrl: DEFAULT_SHARK_IMG }));
                 });
         }
@@ -111,15 +109,6 @@ class SharksDiscover extends React.Component<SharksProps, SharksState> {
                 </div>
             </div>
         );
-    }
-}
-
-/* =============================================
-/           UTILITY FUNCTIONS
-/ ============================================== */
-function printLog(msg: string) {
-    if (ENABLE_DEBUG) {
-        console.log(`DEBUG : ${msg}`);
     }
 }
 

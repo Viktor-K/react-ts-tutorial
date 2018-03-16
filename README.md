@@ -1,16 +1,22 @@
 # react-ts-tutorial
 Simple tutorial for React + Typescript
 ======= 
-#Task Memorandum : 
+### Task Memorandum : list of activity 
 
-[x] Init application with create-react-app for typescript
-[x] Add less preprocess
-[x] Add libs with properly @types
-[x] Add React-Bootstrap (v3.0) libs
-[] Add Redux library
-[] Add React Material UI Components
+- [x] Init application with create-react-app for typescript
+- [x] Add libs with properly @types 
+- [x] Start pure REACT JS application
+- [x] Add asyncronous api REST call
+- [X] Add Redux library
+- [x] Start REACT + REDUX application
+- [x] Add Less preprocess
+- [x] Add React-Bootstrap (v3.0) libs 
+- [ ] Add Debug Redux developer tool
+- [ ] Ad Routing with react-router
+- [ ] Add React Material UI Components
+- [ ] Add Redux Form
+___
 
-=======
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
   
 Below you will find some information on how to perform common tasks.<br>

@@ -1,0 +1,78 @@
+.discover-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100wv;
+    
+    .discover-box{
+        cursor: pointer;
+        border: none;
+        width: 80%;
+        
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        
+        font-weight: bold;
+        color:whitesmoke;
+        background-color: rgb(4, 55, 99);
+        padding: 4px;        
+        
+        &:hover{
+            padding: 0px;
+            // color: rgb(4, 55, 99);
+            // background-color: whitesmoke;        
+            border: solid 4px whitesmoke;        
+            
+            .search-icon{                                
+                color: #FF00FF;
+                transform: scale(3);
+            }
+
+            .discover-button-label{
+                transform: scale(0.9);
+            }
+        }
+        
+        .discover-remain{
+            width: 50%;
+            
+            span{
+                padding: 5px;
+                font-size: 1.5em;
+                font-weight: bold;
+            }   
+        }
+        
+
+        .discover-button{
+            width: 50%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-around;        
+            height: 10em;
+            padding: 1em;
+        
+           .search-icon{
+                width: 40%;                                
+                font-size: 1em;
+                transition: all .2s ease-in-out;                   
+            }
+            .discover-button-label{
+                width: 60%;
+                transition: all .2s ease-in-out;            
+            }
+        }       
+    }
+}    
+
+.disabled-btn{
+    &:hover{
+        cursor: not-allowed;
+    }
+}

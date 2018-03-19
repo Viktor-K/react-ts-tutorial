@@ -41,6 +41,7 @@
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "less-watch-compiler": "^1.11.0",
+    "redux-devtools-extension": "^2.13.2",
     "typescript": "^2.7.2"
   }
 }

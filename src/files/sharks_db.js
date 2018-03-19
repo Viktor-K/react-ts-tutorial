@@ -208,7 +208,7 @@ const SharkList = [
     { name: "Guadalupe lanternshark", media: ' ' },
     { name: "Gulf catshark", media: ' ' },
     { name: "Gulf of Mexico filetail catshark", media: ' ' },
-    { name: "Gulf smooth-hound", media: ' ' },
+    { name: "Gulf smooth-hound", media: 'http://cdn2.arkive.org/media/B4/B4CBFDC3-9DDA-40B9-96F7-8A2D34832515/Presentation.Large/Gulf-of-Mexico-smoothhound-lateral-view.jpg' },
     { name: "Gulper shark", media: 'http://cdn1.arkive.org/media/42/42FFA228-04A9-4841-9042-C8A70C567BA1/Presentation.Large/Gulper-shark-swimming.jpg' },
     { name: "Gummy shark", media: ' ' },
     { name: "Halmahera epaulette shark", media: ' ' },

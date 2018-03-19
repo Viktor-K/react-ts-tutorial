@@ -1,11 +1,12 @@
 type SharkRandomState  = {
-    sharks_list: string[],
+    sharksList: string[],
     sharkName?: string | undefined
 };
 
 type SharkRandomProps = {
     changeCurrentShark?: any | undefined,
-    sharks_list: string[],
+    initSharkList?: any | undefined,
+    sharksList: string[],
     sharkName?: string | undefined
 };
 

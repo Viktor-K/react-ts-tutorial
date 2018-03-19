@@ -5,7 +5,7 @@ import SharkDiscovery from '../../components/SharkDiscover/SharkDiscover';
 import SharkList from '../../files/sharks_list';
 import { SharkRandomState, SharkRandomProps, } from './SharkRandomTypes';
 import { connect } from 'react-redux';
-import { changeCurrentShark } from '../../actions/SharkRandomAction';
+import { initSharkList, changeCurrentShark } from '../../actions/SharkRandomAction';
 let Glyphicon = require('react-bootstrap/lib/Glyphicon');
 
 class SharkRandom extends React.Component<SharkRandomProps, SharkRandomState>  {
@@ -14,7 +14,7 @@ class SharkRandom extends React.Component<SharkRandomProps, SharkRandomState>  {
     //     super(props);        
     //     console.log('Constructor');
     //     this.state = {
-    //         sharks_list: props.sharks_list, // Object.assign([], SharkList),
+    //         sharksList: props.sharksList, // Object.assign([], SharkList),
     //         sharkName: undefined
     //     };
     // }
@@ -23,50 +23,45 @@ class SharkRandom extends React.Component<SharkRandomProps, SharkRandomState>  {
     // discoverNewShark = (): void => this.setState(this.guessNewShark()); 
 
     discoverNewShark = (): void => {
-        let newState: SharkRandomState = this.guessNewShark();
-        this.props.changeCurrentShark(newState.sharkName); // With REDUX we can use dispatch for send an action to reducer        
+        let newShark: string = this.guessNewShark();
+        this.props.changeCurrentShark(newShark); // With REDUX we can use dispatch for send an action to reducer        
     }
 
-    guessNewShark(): SharkRandomState {
-        let { sharks_list } = this.props;
-        const newSharkName = sharks_list[_.random(0, sharks_list.length)];
-
-        return {
-            sharkName: (sharks_list.length === 1) ? sharks_list[0] : newSharkName,
-            // USELESS - Reducer implement this logic
-            sharks_list: (sharks_list.length === 1) ? sharks_list : Object.assign([], _.without(sharks_list, newSharkName))
-        };
+    guessNewShark(): string {
+        let { sharksList } = this.props;
+        const newSharkName = sharksList[_.random(0, sharksList.length)];
+        return (sharksList.length === 1) ? sharksList[0] : newSharkName;
     }
 
     // Init this container component when mount for first time
     componentDidMount() {
-        this.discoverNewShark();
-        this.render();
+        this.props.initSharkList();
+        this.discoverNewShark();        
     }
 
     renderDiscoverbutton() {
-        const { sharks_list } = this.props;
-        const sharkToBeDescover = sharks_list.length;
-        const disabled: boolean = sharkToBeDescover < 2;
-        const btnClasses: string = (disabled) ? 'disabled-btn discover-box' : 'discover-box';
-        const label: string = (disabled) ? 'Well Done now you are shark\'s expert!' : 'Discover New Shark click here!';
+        const { sharksList } = this.props;
+        const sharkToBeDescover = sharksList.length;
+        const discoverIsEnd: boolean = sharkToBeDescover < 2;
+        const btnClasses: string = (discoverIsEnd) ? 'disabled-btn discover-box' : 'discover-box';
+        const label: string = (discoverIsEnd) ? 'Well Done now you are shark\'s expert!' : 'Discover New Shark click here!';
 
         return (
-            <button disabled={disabled} className={btnClasses} onClick={this.discoverNewShark}>
+            <button disabled={discoverIsEnd} className={btnClasses} onClick={this.discoverNewShark}>
                 <div className="discover-remain">
-                    Shark to discover
+                    <div>Shark to discover</div>
                     <span> {sharkToBeDescover} / {SharkList.length} </span>
                 </div>
                 <div className="discover-button">
                     <span className="discover-button-label">{label}</span>
-                    <Glyphicon className="search-icon" glyph="search" />
+                    {(!discoverIsEnd) ? <Glyphicon className="search-icon" glyph="search" /> : ''}
                 </div>
             </button>
         );
     }
 
     render() {
-        const { sharkName } = this.props;
+        const { sharkName } = this.props;        
         return (
             <div className="discover-container">
                 {this.renderDiscoverbutton()}
@@ -76,16 +71,18 @@ class SharkRandom extends React.Component<SharkRandomProps, SharkRandomState>  {
     }
 }
 
-function mapStateToProps(store: any) {
-    return {
-        sharkName: store.sharkListState.sharkName, // SharkRandom needs of sharkListState, a ub property of store
-        sharks_list: store.sharkListState.sharks_list
+function mapStateToProps(store: any) {    
+    // SharkRandom container component needs of SharkListState(a sub property of store)
+    return {        
+        sharkName: store.SharkListState.sharkName, 
+        sharksList: store.SharkListState.sharksList
     };
 }
 
 function mapDispatchToProps(dispatch: any) {
     return {
-        changeCurrentShark: (sharkname: string) => dispatch(changeCurrentShark(sharkname))        
+        changeCurrentShark: (sharkname: string) => dispatch(changeCurrentShark(sharkname)),
+        initSharkList: () => dispatch(initSharkList())
     };
 }
 

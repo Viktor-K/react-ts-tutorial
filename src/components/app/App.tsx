@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './App.css';
 import SharkRandom from '../../container/SharkRandom/SharkRandom';
+import SocialContent from '../../container/Social/Social';
 
 const logo = require('../../img/Discoversharks.png');
 
@@ -11,6 +12,7 @@ class App extends React.Component {
         <header className="App-header"> <img src={logo} className="discover-shark-logo" alt="logo" /> </header>
         <div className="app-container">
           <SharkRandom />
+          <SocialContent/>
         </div>
       </div>
     );

@@ -64,7 +64,7 @@ class SharkRandom extends React.Component<SharkRandomProps, SharkRandomState>  {
         const { sharkName } = this.props;        
         return (
             <div className="discover-container">
-                {this.renderDiscoverbutton()}
+                {this.renderDiscoverbutton()}                        
                 <SharkDiscovery sharkName={sharkName} />
             </div>
         );

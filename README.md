@@ -11,8 +11,9 @@ Simple tutorial for React + Typescript
 - [x] Start REACT + REDUX application
 - [x] Add Less preprocess
 - [x] Add React-Bootstrap (v3.0) libs 
-- [ ] Add Debug Redux developer tool
-- [ ] Ad Routing with react-router
+- [x] Add Debug Redux developer tool
+- [X] Add Thunk Middleware for Async Actions
+- [ ] Add Routing with react-router
 - [ ] Add React Material UI Components
 - [ ] Add Redux Form
 ___

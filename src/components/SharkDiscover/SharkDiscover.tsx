@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as _ from 'lodash';
 import './SharkDiscover.css';
 import { SharksProps, SharksState } from './SharkDiscoveryTypes';
+import Loader from '../Loader/Loader';
 
 const axios = require('axios');
 const Glyphicon = require('react-bootstrap/lib/Glyphicon');
@@ -28,7 +29,7 @@ class SharksDiscover extends React.Component<SharksProps, SharksState> {
     }
 
     componentWillReceiveProps(nextProps: SharksProps, nextState: SharksState) {
-        if (nextProps.sharkName !== this.props.sharkName) {            
+        if (nextProps.sharkName !== this.props.sharkName) {
             this.setComponentState(
                 {
                     sharkName: nextProps.sharkName,
@@ -60,7 +61,7 @@ class SharksDiscover extends React.Component<SharksProps, SharksState> {
 
                     self.setComponentState((prevState, props) => ({ sharkImgUrl: newSharkImg }));
                 })
-                .catch(function (error: object) {                
+                .catch(function (error: object) {
                     self.setComponentState((prevState, props) => ({ sharkImgUrl: DEFAULT_SHARK_IMG }));
                 });
         }
@@ -83,11 +84,7 @@ class SharksDiscover extends React.Component<SharksProps, SharksState> {
                 </div>
             );
         } else {
-            return (
-                <div id="preloader" className="img-container">
-                    <div id="loader" />
-                </div>
-            );
+            return (<Loader />);
         }
     }
 

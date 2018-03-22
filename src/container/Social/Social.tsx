@@ -5,8 +5,12 @@ import { connect } from 'react-redux';
 import { fetchSocialContent } from '../../actions/SocialAction';
 import Loader from '../../components/Loader/Loader';
 import './Social.css';
+import FlatButton from 'material-ui/FlatButton';
+import SearchIcon from 'material-ui/svg-icons/communication/present-to-all';
+import RefreshIcon from 'material-ui/svg-icons/navigation/refresh';
+
 const Parser = require('html-react-parser');
-const Glyphicon = require('react-bootstrap/lib/Glyphicon');
+// const Glyphicon = require('react-bootstrap/lib/Glyphicon');
 
 class Social extends React.Component<SocialProps, {}> {
 
@@ -16,10 +20,7 @@ class Social extends React.Component<SocialProps, {}> {
         const loader = (isFetching) ? <div> <Loader /> </div> : undefined;
 
         const button = (!isFetching && !error && !socialContent) ? (
-            <button onClick={requireSocialContent}>
-                <Glyphicon style={{ margin: '1em', color: 'blue', fontSize: '1.5em' }} glyph="globe" />
-                <i> Find social profile </i>
-            </button>
+            <FlatButton onClick={requireSocialContent} label="Find social profile" icon={<SearchIcon />}/>
         ) : undefined;
 
         const content = (!isFetching && socialContent)
@@ -33,19 +34,17 @@ class Social extends React.Component<SocialProps, {}> {
 
         const errorMsg = (!isFetching && error)
             ? (
-                <pre className="error-label" style={{cursor: 'pointer'}} onClick={requireSocialContent}>
+                <pre className="error-label" style={{ cursor: 'pointer' }} onClick={requireSocialContent}>
                     {`${_.get(error, 'response.status')} : ${_.get(error, 'response.statusText')}`}
-                    <Glyphicon style={{ margin: '1em', color: 'blue', fontSize: '1.5em' }} glyph="repeat"> 
-                        <span>Retry</span> 
-                    </Glyphicon>
-                </pre> 
+                    <FlatButton onClick={requireSocialContent}  style={{ margin: '1em', color: 'blue', fontSize: '1.5em' }} label="Retry" icon={<RefreshIcon />}/>                  
+                </pre>
             )
             : undefined;
 
         return (
             <div className="social-content-component">
                 <div className="social-content-container">
-                    {button} 
+                    {button}
                     {loader}
                     {content}
                     {errorMsg}

@@ -13,8 +13,9 @@ Simple tutorial for React + Typescript
 - [x] Add React-Bootstrap (v3.0) libs 
 - [x] Add Debug Redux developer tool
 - [X] Add Thunk Middleware for Async Actions
+- [x] Mobx vs Redux
+- [x] Add React Material UI Components
 - [ ] Add Routing with react-router
-- [ ] Add React Material UI Components
 - [ ] Add Redux Form
 ___
 

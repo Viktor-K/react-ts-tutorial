@@ -15,7 +15,8 @@ Simple tutorial for React + Typescript
 - [X] Add Thunk Middleware for Async Actions
 - [x] Mobx vs Redux
 - [x] Add React Material UI Components
-- [ ] Add Routing with react-router
+- [x] Add Routing with react-router
+- [ ] Testing with Enzyme Jest
 - [ ] Add Redux Form
 ___
 

@@ -1,0 +1,8 @@
+.shark-list-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shark-list-component .shark-list-container {
+  width: 60%;
+}

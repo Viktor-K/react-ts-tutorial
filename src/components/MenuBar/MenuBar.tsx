@@ -28,14 +28,14 @@ class MenuBar extends React.Component<{}, MenuBarState> {
 
     render() {
         const menu = (
-            <Drawer docked={false} width={200} open={this.state.menuIsOpen} onRequestChange={(menuIsOpen) => this.setState({ menuIsOpen })}>
+            <Drawer containerClassName="drawer-container" docked={false} width={200} open={this.state.menuIsOpen} onRequestChange={(menuIsOpen) => this.setState({ menuIsOpen })}>
                 <Menu>
-                    <MenuItem onClick={this.handleToggle} style={{ fontSize: '0.8em', color: 'rgb(4, 55, 99)' }} leftIcon={<CloseMenuIcon />}/>
-                    <Divider/>
-                    <Link style={{textDecoration: 'none'}} to="/">
+                    <MenuItem onClick={this.handleToggle} style={{ fontSize: '0.8em', color: 'rgb(4, 55, 99)' }} leftIcon={<CloseMenuIcon />} />
+                    <Divider />
+                    <Link style={{ textDecoration: 'none' }} to="/">
                         <MenuItem onClick={this.handleToggle} style={{ fontSize: '0.8em', color: 'rgb(4, 55, 99)' }} leftIcon={<DiscoveryMenuIcon />} primaryText="Discovery Sharks" />
                     </Link>
-                    <Link style={{textDecoration: 'none'}} to="/shark-list">
+                    <Link style={{ textDecoration: 'none' }} to="/shark-list">
                         <MenuItem onClick={this.handleToggle} style={{ fontSize: '0.8em', color: 'rgb(4, 55, 99)' }} leftIcon={<ListMenuIcon />} primaryText="Shark List" />
                     </Link>
                 </Menu>
@@ -43,7 +43,7 @@ class MenuBar extends React.Component<{}, MenuBarState> {
         );
 
         return (
-            <AppBar onLeftIconButtonClick={this.handleToggle} className="app-menu-bar" iconElementLeft={(this.state.menuIsOpen) ? iconCloseMenu : iconOpenMenu} iconElementRight={logo}>
+            <AppBar onLeftIconButtonClick={this.handleToggle} style={{ backgroundColor: 'rgb(4, 55, 99)' }} className="app-menu-bar" iconElementLeft={(this.state.menuIsOpen) ? iconCloseMenu : iconOpenMenu} iconElementRight={logo}>
                 {menu}
             </AppBar>
         );

@@ -16,7 +16,7 @@ Simple tutorial for React + Typescript
 - [x] Mobx vs Redux
 - [x] Add React Material UI Components
 - [x] Add Routing with react-router
-- [ ] Testing with Enzyme Jest
+- [x] Testing with Enzyme & Jest
 - [ ] Add Redux Form
 ___
 

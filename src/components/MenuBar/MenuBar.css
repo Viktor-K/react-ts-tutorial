@@ -1,6 +1,17 @@
+.app-menu-bar {
+  background-color: #043763;
+  justify-content: space-between;
+  align-items: center;
+}
+.app-menu-bar .drawer-container {
+  top: 30px;
+}
 .app-menu-bar .menu-icon {
   color: #043763;
 }
 .app-menu-bar .discover-shark-logo {
-  width: 30%;
+  background-color: whitesmoke;
+  width: 150px;
+  padding: 0px 0px;
+  margin-bottom: 0px;
 }

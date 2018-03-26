@@ -1,3 +1,0 @@
-- Typescript integration
-- Less loader files
-- Redux 

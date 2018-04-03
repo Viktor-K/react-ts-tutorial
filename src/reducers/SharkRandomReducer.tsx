@@ -10,6 +10,8 @@ const defaultSharkRandomState: SharkRandomState = {
 
 function SharkRandomReducer(state: any = defaultSharkRandomState, action: SharkRandomAction): SharkRandomState | Array<SharkRandomState> {
     switch (action.type) {
+        case SharkRandomActionType.INIT_SHARKS_LIST:
+            return state;
         case SharkRandomActionType.CHANGE_CURRENT_SHARK:
             return removeSharkFromList(state, action.sharkName);
         default:
@@ -18,7 +20,7 @@ function SharkRandomReducer(state: any = defaultSharkRandomState, action: SharkR
 }
 
 function removeSharkFromList(state: any, newSharkName: string): SharkRandomState {
-    let { sharksList } = state;
+    let { sharksList } = state;    
 
     return Object.assign({}, state, {        
         sharkName: (sharksList.length === 1)

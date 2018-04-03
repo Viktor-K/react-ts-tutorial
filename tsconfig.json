@@ -2,14 +2,14 @@
   "compilerOptions": {
     "outDir": "build/dist",
     "module": "commonjs",
+    "jsx": "react",
     "target": "es5",
     "lib": [
       "es6",
       "dom"
     ],
     "sourceMap": true,
-    "allowJs": true,
-    "jsx": "react",
+    "allowJs": true,    
     "moduleResolution": "node",
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
@@ -21,6 +21,9 @@
     "noUnusedLocals": true,
     "skipLibCheck": true
   },
+  "include": [
+    "./src/**/*"
+  ],
   "exclude": [
     "node_modules",
     "build",

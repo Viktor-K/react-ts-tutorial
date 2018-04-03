@@ -6,7 +6,7 @@ import { fetchSocialContent } from '../../actions/SocialAction';
 import Loader from '../../components/Loader/Loader';
 import './Social.css';
 import FlatButton from 'material-ui/FlatButton';
-import SearchIcon from 'material-ui/svg-icons/communication/present-to-all';
+import SearchIcon from 'material-ui/svg-icons/action/track-changes';
 import RefreshIcon from 'material-ui/svg-icons/navigation/refresh';
 
 const Parser = require('html-react-parser');
@@ -39,7 +39,7 @@ class Social extends React.Component<SocialProps, {}> {
 
         const loader = (isFetching) ? <div> <Loader /> </div> : undefined;
         const button = (!isFetching && !error && !socialContent)
-            ? (<FlatButton onClick={requireSocialContent} label="Find in social" icon={<SearchIcon />} />)
+            ? (<FlatButton onClick={requireSocialContent} label="Explore related social into the web" icon={<SearchIcon />} />)
             : undefined;
 
         const content = (!isFetching && socialContent)
@@ -53,7 +53,7 @@ class Social extends React.Component<SocialProps, {}> {
 
         const errorMsg = (!isFetching && error)
             ? (
-                <pre className="error-label" style={{ cursor: 'pointer' }} onClick={requireSocialContent}>
+                <pre className="error-label" style={{ cursor: 'pointer' }}>
                     {`${_.get(error, 'response.status')} : ${_.get(error, 'response.statusText')}`}
                     <FlatButton onClick={requireSocialContent} style={{ margin: '1em', color: 'blue', fontSize: '1.5em' }} label="Retry" icon={<RefreshIcon />} />
                 </pre>

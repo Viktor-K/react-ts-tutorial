@@ -43,8 +43,7 @@ const fetchSocialContent = () => { // Perform a GET API request
         dispatch(fetching()); // use to show loader meanwhile wait response
 
         axios.get(requestUrl)
-            .then((res) => {
-                    console.log(JSON.stringify(res));
+            .then((res) => {                    
                     dispatch(
                         showResult(
                             _.get(res, 'data.data.result.items[0]', [`no result for ${query}`])

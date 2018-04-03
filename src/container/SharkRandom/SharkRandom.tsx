@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import './SharkRandom.css';
 import SharkDiscovery from '../../components/SharkDiscover/SharkDiscover';
 import SharkList from '../../files/sharks_list';
-import { SharkRandomState, SharkRandomProps, } from './SharkRandomTypes';
+import { SharkRandomState, SharkRandomProps } from './SharkRandomTypes';
 import { connect } from 'react-redux';
 import { initSharkList, changeCurrentShark } from '../../actions/SharkRandomAction';
 let Glyphicon = require('react-bootstrap/lib/Glyphicon');
@@ -22,8 +22,8 @@ class SharkRandom extends React.Component<SharkRandomProps, SharkRandomState>  {
     // Without REDUX we must update component state, after state modify react update his presentational component child SharkDiscover
     // discoverNewShark = (): void => this.setState(this.guessNewShark()); 
 
-    discoverNewShark = (): void => {
-        let newShark: string = this.guessNewShark();
+    discoverNewShark = (): void => {        
+        let newShark: string = this.guessNewShark();                
         this.props.changeCurrentShark(newShark); // With REDUX we can use dispatch for send an action to reducer        
     }
 
@@ -36,7 +36,6 @@ class SharkRandom extends React.Component<SharkRandomProps, SharkRandomState>  {
     // Init this container component when mount for first time
     componentDidMount() {
         this.props.initSharkList();
-        this.discoverNewShark();        
     }
 
     renderDiscoverbutton() {
@@ -60,7 +59,7 @@ class SharkRandom extends React.Component<SharkRandomProps, SharkRandomState>  {
         );
     }
 
-    render() {
+    render() {        
         const { sharkName } = this.props;        
         return (
             <div className="discover-container">
@@ -72,7 +71,7 @@ class SharkRandom extends React.Component<SharkRandomProps, SharkRandomState>  {
 }
 
 function mapStateToProps(store: any) {    
-    // SharkRandom container component needs of SharkListState(a sub property of store)
+    // SharkRandom container component needs of SharkListState(a sub property of store)    
     return {        
         sharkName: store.SharkListState.sharkName, 
         sharksList: store.SharkListState.sharksList

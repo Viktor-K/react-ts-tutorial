@@ -22,8 +22,8 @@ class SharkRandom extends React.Component<SharkRandomProps, SharkRandomState>  {
     // Without REDUX we must update component state, after state modify react update his presentational component child SharkDiscover
     // discoverNewShark = (): void => this.setState(this.guessNewShark()); 
 
-    discoverNewShark = (): void => {        
-        let newShark: string = this.guessNewShark();                
+    discoverNewShark = (): void => {
+        let newShark: string = this.guessNewShark();
         this.props.changeCurrentShark(newShark); // With REDUX we can use dispatch for send an action to reducer        
     }
 
@@ -59,21 +59,21 @@ class SharkRandom extends React.Component<SharkRandomProps, SharkRandomState>  {
         );
     }
 
-    render() {        
-        const { sharkName } = this.props;        
+    render() {
+        const { sharkName } = this.props;
         return (
             <div className="discover-container">
-                {this.renderDiscoverbutton()}                        
+                {this.renderDiscoverbutton()}
                 <SharkDiscovery sharkName={sharkName} />
             </div>
         );
     }
 }
 
-function mapStateToProps(store: any) {    
+function mapStateToProps(store: any) {
     // SharkRandom container component needs of SharkListState(a sub property of store)    
-    return {        
-        sharkName: store.SharkListState.sharkName, 
+    return {
+        sharkName: store.SharkListState.sharkName,
         sharksList: store.SharkListState.sharksList
     };
 }

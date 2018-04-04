@@ -16,7 +16,7 @@ class SharkList extends React.Component<{}, {}>  {
                     <List>
                         {
                             SharkNameList.map((name, index) => (
-                                <div>
+                                <div key={index}>
                                     <ListItem leftIcon={<ActionGrade color={lightBlack}/>} primaryText={index + 1} secondaryText={<p> {name} </p>} />
                                     <Divider />
                                 </div>

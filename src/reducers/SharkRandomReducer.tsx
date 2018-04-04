@@ -11,7 +11,7 @@ const defaultSharkRandomState: SharkRandomState = {
 function SharkRandomReducer(state: any = defaultSharkRandomState, action: SharkRandomAction): SharkRandomState | Array<SharkRandomState> {
     switch (action.type) {
         case SharkRandomActionType.INIT_SHARKS_LIST:
-            return state;
+            return {...defaultSharkRandomState};
         case SharkRandomActionType.CHANGE_CURRENT_SHARK:
             return removeSharkFromList(state, action.sharkName);
         default:

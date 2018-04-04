@@ -6,8 +6,9 @@ import { fetchSocialContent } from '../../actions/SocialAction';
 import Loader from '../../components/Loader/Loader';
 import './Social.css';
 import FlatButton from 'material-ui/FlatButton';
-import SearchIcon from 'material-ui/svg-icons/action/track-changes';
+import SearchIcon from 'material-ui/svg-icons/social/share';
 import RefreshIcon from 'material-ui/svg-icons/navigation/refresh';
+import { RaisedButton } from 'material-ui';
 
 const Parser = require('html-react-parser');
 // const Glyphicon = require('react-bootstrap/lib/Glyphicon');
@@ -39,7 +40,7 @@ class Social extends React.Component<SocialProps, {}> {
 
         const loader = (isFetching) ? <div> <Loader /> </div> : undefined;
         const button = (!isFetching && !error && !socialContent)
-            ? (<FlatButton onClick={requireSocialContent} label="Explore related social into the web" icon={<SearchIcon />} />)
+            ? (<RaisedButton labelColor="#FF00FF" label="Social channels" onClick={requireSocialContent} labelPosition="before" icon={<SearchIcon/>} />)
             : undefined;
 
         const content = (!isFetching && socialContent)
